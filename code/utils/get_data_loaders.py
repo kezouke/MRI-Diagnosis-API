@@ -91,3 +91,9 @@ def create_data_loaders(batch_size=32, image_size=150, val_split=0.2):
                              num_workers=2)
 
     return train_loader, val_loader, test_loader
+
+
+if __name__ == "__main__":
+    train_loader, val_loader, test_loader = create_data_loaders()
+    labels = test_loader.dataset.classes
+    print(labels)

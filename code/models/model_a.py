@@ -81,7 +81,9 @@ def plot_and_save_sample_results(test_loader, model, num_samples: int,
     all_labels = []
 
     with torch.no_grad():
-        for images, labels in tqdm(test_loader, desc="Evaluating", unit="batch"):
+        for images, labels in tqdm(test_loader,
+                                   desc="Evaluating",
+                                   unit="batch"):
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
             _, preds = torch.max(outputs, 1)
@@ -135,7 +137,9 @@ def train_model(model: nn.Module,
         model.train()
         running_loss, correct, total = 0.0, 0, 0
 
-        for images, labels in tqdm(train_loader, desc=f"Epoch {epoch+1}/{num_epochs}", unit="batch"):
+        for images, labels in tqdm(train_loader,
+                                   desc=f"Epoch {epoch+1}/{num_epochs}",
+                                   unit="batch"):
             images, labels = images.to(device), labels.to(device)
             optimizer.zero_grad()
             outputs = model(images)
@@ -158,7 +162,9 @@ def train_model(model: nn.Module,
         model.eval()
         val_correct, val_total = 0, 0
         with torch.no_grad():
-            for images, labels in tqdm(val_loader, desc="Validation", unit="batch"):
+            for images, labels in tqdm(val_loader,
+                                       desc="Validation",
+                                       unit="batch"):
                 images, labels = images.to(device), labels.to(device)
                 outputs = model(images)
                 _, predicted = torch.max(outputs.data, 1)
