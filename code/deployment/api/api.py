@@ -11,14 +11,18 @@ from code.utils.get_data_loaders import get_project_root, create_data_loaders
 
 from pydantic import BaseModel
 
+
 class PredictionResponse(BaseModel):
     prediction: str
+
 
 class ErrorResponse(BaseModel):
     error: str
 
+
 class AccuracyResponse(BaseModel):
     test_accuracy: float
+
 
 class PredictionRequest(BaseModel):
     file: str
@@ -45,11 +49,14 @@ transform = transforms.Compose([
 ])
 
 
-@app.post("/predict/",  
-          response_model=PredictionResponse, 
-          responses={500: {"model": ErrorResponse}}, 
-          summary="Predict brain tumor type", 
-          description="Upload an image of an MRI scan to predict the type of brain tumor.")
+@app.post("/predict/",
+          response_model=PredictionResponse,
+          responses={500: {
+              "model": ErrorResponse
+          }},
+          summary="Predict brain tumor type",
+          description=
+          "Upload an image of an MRI scan to predict the type of brain tumor.")
 async def predict(file: UploadFile = File(...)):
     """
     Upload an MRI scan image to get a prediction on the type of brain tumor.
@@ -82,11 +89,14 @@ async def predict(file: UploadFile = File(...)):
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
 
-@app.get("/evaluate/", 
-         response_model=AccuracyResponse, 
-         responses={500: {"model": ErrorResponse}},
-         summary="Evaluate model accuracy", 
-         description="Evaluate the model's accuracy using the test data loader.")
+@app.get(
+    "/evaluate/",
+    response_model=AccuracyResponse,
+    responses={500: {
+        "model": ErrorResponse
+    }},
+    summary="Evaluate model accuracy",
+    description="Evaluate the model's accuracy using the test data loader.")
 async def evaluate():
     """
     Evaluate the accuracy of the model using the test dataset.
