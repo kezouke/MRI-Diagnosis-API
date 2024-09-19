@@ -6,21 +6,16 @@ Brain tumors are a significant health concern, accounting for 85-90% of all prim
 
 Automated classification techniques using Machine Learning (ML) and Artificial Intelligence (AI) have shown higher accuracy compared to manual methods. This project proposes a system that leverages Deep Learning algorithms, including Convolutional Neural Networks (CNN), Artificial Neural Networks (ANN), and Transfer Learning (TL), to enhance the detection and classification of brain tumors, aiding doctors worldwide.
 
-## Context
-
-Brain tumors present significant challenges due to their complexity and variability in size and location. Accurate analysis of MRI scans often requires specialized neurosurgeons, and in developing countries, the shortage of skilled professionals makes it challenging to generate timely and accurate reports. An automated cloud-based system can alleviate these challenges by providing consistent and efficient analysis of MRI scans.
+Brain tumors present significant challenges due to their complexity and variability in size and location. Accurate analysis of MRI scans often requires specialized neurosurgeons, and in developing countries, the shortage of skilled professionals makes it challenging to generate timely and accurate reports. 
 
 ## Definition
 
 This project aims to detect and classify brain tumors using CNN techniques as part of a Deep Learning approach.
 
-### Main Task
-
-The main task of this repository involves deploying a machine learning model as an API and creating a web application that interacts with this API. The model API will handle requests from the web application and provide responses. The web application should include input fields for uploading MRI images, a button to trigger predictions, and an area to display the results. The deployment will use Docker containers, FastAPI for the model API, and Streamlit for the web application.
+The main task of this repository involves deploying a machine learning model as an API and creating a web application that interacts with this API. The model API will handle requests from the web application and provide responses. The web application includes input fields for uploading MRI images, a button to trigger predictions, and an area to display the results. The deployment use Docker containers, FastAPI for the model API, and Streamlit for the web application.
 
 ## Model Description
-The brain tumor classification model is built using a Convolutional Neural Network architecture designed to classify various types of brain tumors from MRI scans. The model consists of multiple convolutional layers for feature extraction, followed by max pooling layers to downsample the spatial dimensions. Fully connected layers at the end of the architecture enable the final classification into one of four tumor types: glioma, meningioma, pituitary tumor, or no tumor. A dropout layer is included to mitigate overfitting during training, and the model is trained using the Adam optimizer with a cross-entropy loss function. The model is optimized for performance on both validation and test datasets, ensuring high accuracy and reliability in predictions.
-You can include the following sections in your README to add the pictures of model training and predictions:
+The brain tumor classification model is built using a CNN. The model consists of multiple convolutional layers for feature extraction, followed by max pooling layers to downsample the spatial dimensions. Fully connected layers at the end of the architecture enable the final classification into one of four tumor types: glioma, meningioma, pituitary tumor, or no tumor. A dropout layer is included to mitigate overfitting during training, and the model is trained using the Adam optimizer with a cross-entropy loss function. The model is optimized for performance on both validation and test datasets, ensuring high accuracy and reliability in predictions.
 
 ### Model Training Accuracy
 
@@ -40,11 +35,6 @@ Below are some randomly selected predictions from the test set, showcasing the m
 - **Web Application**: A user-friendly interface created using Streamlit for easy interaction with the model API.
 - **Dockerized Deployment**: Both the API and web application are packaged in Docker containers for seamless deployment and scalability.
 - **Network Management**: Utilizes Docker networks to facilitate communication between services.
-
-## Prerequisites
-
-- Docker installed on your machine.
-- Basic understanding of command line interface and Docker commands.
 
 ## Installation
 
@@ -96,10 +86,3 @@ Below are some randomly selected predictions from the test set, showcasing the m
    ```bash
    docker-compose -f code/deployment/docker-compose.yml up --build
    ```
-
-## Usage
-
-Once the services are up and running:
-
-- Access the Streamlit web application in your browser at `http://localhost:8501`.
-- Upload an MRI image and click the "Predict" button to receive a classification of the brain tumor type.
