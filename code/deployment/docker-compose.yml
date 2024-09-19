@@ -1,0 +1,26 @@
+services:
+  fastapi-service:
+    build:
+      context: ../..  # Set to the root of the project
+      dockerfile: code/deployment/api/Dockerfile  # Correct path to the Dockerfile
+    networks:
+      - my_network
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../..:/usr/src/app  # Mount the entire project to the container
+
+  streamlit-app:
+    build:
+      context: ../..  # Set to the root of the project
+      dockerfile: code/deployment/app/Dockerfile  # Correct path to the Dockerfile
+    networks:
+      - my_network
+    ports:
+      - "8501:8501"
+    volumes:
+      - ../..:/usr/src/app  # Mount the entire project to the container
+
+networks:
+  my_network:
+    driver: bridge
